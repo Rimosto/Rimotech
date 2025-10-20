@@ -263,14 +263,399 @@ header {
       <div class="card"><h3>Jane Doe</h3><p>Project Manager</p></div>
       <div class="card"><h3>John Smith</h3><p>UI/UX Designer</p></div>
     </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RimoTech Company Limited</title>
+  <style>
+    :root {
+      --primary: #007bff;
+      --secondary: #0a0a0a;
+      --accent: #00d4ff;
+      --text-light: #f5f5f5;
+      --text-dark: #222;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: var(--secondary);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 50px;
+      z-index: 1000;
+      backdrop-filter: blur(10px);
+    }
+
+    .logo img {
+      height: 50px;
+      width: auto;
+      display: block;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      color: var(--accent);
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+
+    nav ul li a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    nav ul li a:hover {
+      color: var(--accent);
+    }
+
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background-color: var(--accent);
+      transition: width 0.3s;
+    }
+
+    nav ul li a:hover::after {
+      width: 100%;
+    }
+
+    section {
+      padding: 100px 60px;
+      text-align: center;
+    }
+
+    #home {
+      background: linear-gradient(to right, #001f3f, #004080);
+      color: white;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #home::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" opacity="0.05"><polygon fill="white" points="0,1000 1000,0 1000,1000"/></svg>');
+      background-size: cover;
+    }
+
+    #home h2 {
+      font-size: 3.5rem;
+      margin-bottom: 10px;
+      z-index: 1;
+      text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    #home p {
+      font-size: 1.5rem;
+      color: #d0e7ff;
+      z-index: 1;
+      margin-bottom: 30px;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--secondary);
+      padding: 12px 30px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s;
+      z-index: 1;
+      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 212, 255, 0.5);
+    }
+
+    #about, #services, #portfolio, #team, #contact {
+      background: var(--secondary);
+      color: var(--text-light);
+    }
+
+    .section-title {
+      color: var(--accent);
+      margin-bottom: 20px;
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      width: 60%;
+      height: 3px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      bottom: -10px;
+      left: 20%;
+    }
+
+    .services-container, .team-container, .portfolio-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: #111;
+      padding: 30px 20px;
+      border-radius: 10px;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: 1px solid #222;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 25px rgba(0, 212, 255, 0.2);
+      border-color: var(--accent);
+    }
+
+    .card h3 {
+      color: var(--accent);
+      margin-bottom: 15px;
+      font-size: 1.5rem;
+    }
+
+    #contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .form-group label {
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    input, textarea {
+      padding: 15px;
+      border: 1px solid #333;
+      border-radius: 5px;
+      background: #111;
+      color: white;
+      font-size: 16px;
+      transition: all 0.3s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
+    }
+
+    button {
+      background: var(--primary);
+      color: white;
+      padding: 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 25px;
+      background-color: #2ecc71;
+      color: white;
+      border-radius: 5px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      transform: translateX(150%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    .notification.show {
+      transform: translateX(0);
+    }
+
+    footer {
+      background: #000;
+      padding: 30px;
+      text-align: center;
+      font-size: 1rem;
+      color: #aaa;
+      border-top: 1px solid #222;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        padding: 15px;
+      }
+
+      nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      #home h2 {
+        font-size: 2.5rem;
+      }
+
+      #home p {
+        font-size: 1.2rem;
+      }
+
+      section {
+        padding: 80px 20px;
+      }
+
+      .services-container, .team-container, .portfolio-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <!-- Replace with your actual logo path -->
+    <img src="Rimotech.png" alt="RimoTech Logo" />
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#portfolio">Portfolio</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <section id="home">
+    <h2>RimoTech Company Limited</h2>
+    <p>Innovation for the Future</p>
+    <a href="#contact" class="cta-button">Get In Touch</a>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About Us</h2>
+    <p>RimoTech Company Limited is a technology-driven firm specializing in innovative digital solutions, systems development, and IT consultancy. Our mission is to empower businesses and individuals through smart, reliable, and futuristic technology.</p>
+  </section>
+
+  <section id="services">
+    <h2 class="section-title">Our Services</h2>
+    <div class="services-container">
+      <div class="card">
+        <h3>Software Development</h3>
+        <p>Custom web and desktop applications tailored to your business needs.</p>
+      </div>
+      <div class="card">
+        <h3>IT Consultancy</h3>
+        <p>Professional advice and solutions to optimize your technology operations.</p>
+      </div>
+      <div class="card">
+        <h3>System Integration</h3>
+        <p>Seamless integration of multiple systems for efficient workflow.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <h2 class="section-title">Our Projects</h2>
+    <div class="portfolio-container">
+      <div class="card"><h3>Smart School System</h3><p>Automation of school management and reporting.</p></div>
+      <div class="card"><h3>Business POS</h3><p>Modern POS systems for retail and enterprises.</p></div>
+      <div class="card"><h3>RimoTrack</h3><p>Intelligent vehicle tracking and rental management software.</p></div>
+    </div>
+  </section>
+
+  <section id="team">
+    <h2 class="section-title">Our Team</h2>
+    <div class="team-container">
+      <div class="card"><h3>Patrick Rimomo</h3><p>Founder & Lead Developer</p></div>
+      <div class="card"><h3>Jane Doe</h3><p>Project Manager</p></div>
+      <div class="card"><h3>John Smith</h3><p>UI/UX Designer</p></div>
+    </div>
   </section>
 
   <section id="contact">
-    <h2>Contact Us</h2>
+    <h2 class="section-title">Contact Us</h2>
     <form id="contactForm" action="https://formspree.io/f/mvgqloaw" method="POST">
-      <input type="text" placeholder="Full Name" required />
-      <input type="email" placeholder="Email Address" required />
-      <textarea rows="4" placeholder="Your Message" required></textarea>
+      <div class="form-group">
+        <label for="fullName">Full Name</label>
+        <input type="text" id="fullName" name="name" placeholder="Enter your full name" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required />
+      </div>
+      
+      <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="4" placeholder="Enter your message" required></textarea>
+      </div>
+      
       <button type="submit">Send Message</button>
     </form>
   </section>
@@ -279,12 +664,78 @@ header {
     <p>© 2025 RimoTech Company Limited — Innovation for the Future</p>
   </footer>
 
+  <div class="notification" id="notification">
+    Thank you for contacting RimoTech! We'll get back to you soon.
+  </div>
+
   <script>
-    // Simple confirmation for contact form
+    // Enhanced form submission with proper data handling
     document.getElementById("contactForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      alert("Thank you for contacting RimoTech! We’ll get back to you soon.");
-      this.reset();
+      
+      // Show notification
+      const notification = document.getElementById("notification");
+      notification.classList.add("show");
+      
+      // Create form data
+      const formData = new FormData(this);
+      
+      // Submit to Formspree
+      fetch(this.action, {
+        method: this.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          // Success - reset form
+          this.reset();
+        } else {
+          // Error handling
+          notification.textContent = "Oops! There was a problem submitting your form.";
+          notification.style.backgroundColor = "#e74c3c";
+        }
+      })
+      .catch(error => {
+        // Network error handling
+        notification.textContent = "Oops! There was a problem submitting your form.";
+        notification.style.backgroundColor = "#e74c3c";
+      });
+      
+      // Hide notification after 5 seconds
+      setTimeout(() => {
+        notification.classList.remove("show");
+        // Reset notification style after hiding
+        setTimeout(() => {
+          notification.textContent = "Thank you for contacting RimoTech! We'll get back to you soon.";
+          notification.style.backgroundColor = "#2ecc71";
+        }, 300);
+      }, 5000);
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('nav a').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        window.scrollTo({
+          top: targetElement.offsetTop - 80,
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Header background on scroll
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('header');
+      if (window.scrollY > 100) {
+        header.style.background = "rgba(0, 0, 0, 0.95)";
+      } else {
+        header.style.background = "rgba(0, 0, 0, 0.9)";
+      }
     });
   </script>
 
